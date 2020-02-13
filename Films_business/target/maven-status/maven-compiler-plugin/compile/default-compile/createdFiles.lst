@@ -1,0 +1,13 @@
+test\filmssearch\task\service\impl\FilmServiceImpl.class
+test\filmssearch\task\service\impl\DirectorServiceIImpl.class
+test\filmssearch\task\dao\AbstractDao.class
+test\filmssearch\task\entity\Films.class
+test\filmssearch\task\dao\impl\FilmsImplDAO.class
+test\filmssearch\task\db\conection\pool\FilmsDataSource.class
+test\filmssearch\task\db\migration\FilmsMigration.class
+test\filmssearch\task\service\FilmServiceInterface.class
+test\filmssearch\task\dao\impl\DirectorsImplDAO.class
+test\filmssearch\task\entity\Director.class
+test\filmssearch\task\service\DirectorServiceInterface.class
+test\filmssearch\task\dao\DirectorDAO.class
+test\filmssearch\task\dao\FilmDAO.class
