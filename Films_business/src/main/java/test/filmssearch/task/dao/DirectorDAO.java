@@ -1,7 +1,5 @@
 package test.filmssearch.task.dao;
 
-
-
 import test.filmssearch.task.entity.Director;
 
 import java.sql.SQLException;

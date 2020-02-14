@@ -8,6 +8,7 @@ import java.sql.Date;
 @Setter
 @Getter
 @ToString
+@EqualsAndHashCode
 @NoArgsConstructor
 @AllArgsConstructor
 public class Director {

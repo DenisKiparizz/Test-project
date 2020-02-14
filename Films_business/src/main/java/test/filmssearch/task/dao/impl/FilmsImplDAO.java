@@ -25,14 +25,11 @@ public class FilmsImplDAO extends AbstractDao implements FilmDAO {
         return INSTANCE;
     }
 
-    private static final String GET_BY_DATE = "select f.*, d.first_name,d.last_name,d.birth_day from director d join film f on d.id = f.director_id where f.release_date between ? and ? order by release_date;";
-    private static final String GET_BY_START_DATE_AND_DIRECTOR = "select f.*, d.first_name,d.last_name,d.birth_day from director d join film f on d.id = f.director_id where d.id=? and  f.release_date > ? order by release_date;";
-    private static final String GET_BY_START_DATE = "select f.*, d.first_name,d.last_name,d.birth_day from director d join film f on d.id = f.director_id where f.release_date > ? order by release_date;";
-    private static final String GET_BY_DIRECTOR_ID = "select f.*, d.first_name,d.last_name,d.birth_day from director d join film f on d.id = f.director_id where director_id = ? order by id;";
-    private static final String GET_BY_DIRECTOR_ID_AND_DATES = "select f.*, d.first_name,d.last_name,d.birth_day from director d join film f on d.id = f.director_id where  f.director_id  = ? and f.release_date between ? and ? order by id;";
-    private static final String GET_ALL_RELEASE_DATE = "select id,release_date from film order by release_date;";
-
-
+    private static final String GET_BY_DATE = "select f.*, d.first_name,d.last_name,d.birth_day from director d  join film f on d.id = f.director_id where f.release_date between ? and ? order by release_date;";
+    private static final String GET_BY_START_DATE_AND_DIRECTOR = "select f.*, d.first_name,d.last_name,d.birth_day from director d  join film f on d.id = f.director_id where d.id=? and  f.release_date > ? order by release_date;";
+    private static final String GET_BY_START_DATE = "select f.*, d.first_name,d.last_name,d.birth_day from director d  join film f on d.id = f.director_id where f.release_date > ? order by release_date;";
+    private static final String GET_BY_DIRECTOR_ID = "select f.*, d.first_name,d.last_name,d.birth_day from director d  join film f on d.id = f.director_id where director_id = ? order by id;";
+    private static final String GET_BY_DIRECTOR_ID_AND_DATES = "select f.*, d.first_name,d.last_name,d.birth_day from director d  join film f on d.id = f.director_id where  f.director_id  = ? and f.release_date between ? and ? order by id;";
     @Override
     public List<Films> findByDirectorId(Long id) throws SQLException {
         List<Films> filmList = new ArrayList<>();
@@ -121,13 +118,12 @@ public class FilmsImplDAO extends AbstractDao implements FilmDAO {
         }
         return filmList;
     }
-
     private Films mappingFilms(ResultSet resultSet) throws SQLException {
         Long id = resultSet.getLong("id");
         Director director = new Director(resultSet.getLong("id"), resultSet.getString("first_name"),
                 resultSet.getString("last_name"), resultSet.getDate("birth_day"));
         String name = resultSet.getString("name");
-        Long releaseDate = resultSet.getLong("release_date");
+        Integer releaseDate = resultSet.getInt("release_date");
         String genre = resultSet.getString("genre");
         return new Films(id, director, name, releaseDate, genre);
     }

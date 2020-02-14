@@ -39,7 +39,7 @@ public final class FilmsDataSource {
 
     private static void check() throws SQLException {
         if (dataSource == null) {
-            throw new SQLException("DataSourse empty");
+            throw new SQLException("DataSource empty");
         }
     }
 }

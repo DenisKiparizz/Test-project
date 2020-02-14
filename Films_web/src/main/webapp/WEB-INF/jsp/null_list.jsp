@@ -5,7 +5,7 @@
     <title>Title</title>
 </head>
 <body>
-Null List
-Sorry
+<%@include file="include/meny.jsp" %>
+<h3>No films were found for the specified parameters</h3>
 </body>
 </html>

@@ -32,20 +32,16 @@ public class FilmServiceImpl implements FilmServiceInterface {
         return list;
     }
 
-    @Override
-    public List<Films> findByDirectorIdAndFilmRealiseDate(Long id, Long date1, Long date2) {
-        List<Films> list = new ArrayList<>();
-        try {
-            list = instDao.findByDirectorIdAndFilmRealiseDate(id, date1, date2);
-        } catch (SQLException e) {
-            logger.error("===Find by Realise Date and Director ID===");
-        }
-        return list;
-    }
 
     @Override
     public List<Films> findByRealiseDates(Long date1, Long date2) {
-        return null;
+        List<Films> list = new ArrayList<>();
+        try {
+            list = instDao.findByRealiseDates(date1, date2);
+        } catch (SQLException e) {
+            e.printStackTrace();
+        }
+        return list;
     }
 
     @Override
@@ -91,19 +87,30 @@ public class FilmServiceImpl implements FilmServiceInterface {
     }
 
     @Override
+    public List<Films> findByDirectorIdAndFilmRealiseDate(Long id, Long date1, Long date2) {
+        List<Films> list = new ArrayList<>();
+        try {
+            list = instDao.findByDirectorIdAndFilmRealiseDate(id, date1, date2);
+        } catch (SQLException e) {
+            e.printStackTrace();
+        }
+        return list;
+    }
+
+    @Override
     public List<Films> isParametersIsNullWithTwoDates(String idStr, String d1, String d2) {
         try {
-            if (idStr.isEmpty()) {
+            if (idStr == null || idStr.length() == 0) {
                 Long date1 = Long.valueOf(d1);
                 Long date2 = Long.valueOf(d2);
                 return getInstance().findByRealiseDates(date1, date2);
-            } else if (d1.isEmpty() && d2.isEmpty()) {
+            } if (d1 == null || d1.length() == 0 && d2 == null || d2.length() == 0) {
                 Long id = Long.valueOf(idStr);
                 return getInstance().findByDirectorId(id);
             } else {
+                Long id = Long.valueOf(idStr);
                 Long date1 = Long.valueOf(d1);
                 Long date2 = Long.valueOf(d2);
-                Long id = Long.valueOf(idStr);
                 return getInstance().findByDirectorIdAndFilmRealiseDate(id, date1, date2);
             }
         } catch (NumberFormatException e) {

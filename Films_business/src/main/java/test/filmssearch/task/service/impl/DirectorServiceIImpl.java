@@ -27,7 +27,7 @@ public class DirectorServiceIImpl implements DirectorServiceInterface {
         try {
             list = directorDAO.getAllDirectors();
         } catch (SQLException e) {
-            e.printStackTrace();
+            logger.error("====Error From GETALLDIRECTORS====");
         }
         return list;
     }

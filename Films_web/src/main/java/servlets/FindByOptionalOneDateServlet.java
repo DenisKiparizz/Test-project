@@ -13,11 +13,6 @@ import javax.servlet.http.HttpServlet;
 import javax.servlet.http.HttpServletRequest;
 import javax.servlet.http.HttpServletResponse;
 import java.io.IOException;
-import java.text.ParseException;
-import java.text.SimpleDateFormat;
-import java.time.LocalDate;
-import java.util.ArrayList;
-import java.util.Date;
 import java.util.List;
 
 @WebServlet(urlPatterns = "/allOptionalWithOneDate")
@@ -36,8 +31,14 @@ public class FindByOptionalOneDateServlet extends HttpServlet {
     protected void doPost(HttpServletRequest req, HttpServletResponse resp) throws ServletException, IOException {
         String idStr = req.getParameter("id");
         String d1 = req.getParameter("date1");
+        String errorMassage = "";
+        boolean error = false;
+        if(idStr.isEmpty() && d1.isEmpty()){
+            req.setAttribute("ERROR", errorMassage);
+            req.getRequestDispatcher("WEB-INF/jsp/null_parametrs.jsp").forward(req, resp);
+        }
         List<Films> list = instance.isParametersIsNull(idStr, d1);
-        if (list == null) {
+        if (list.isEmpty()) {
             req.getRequestDispatcher("WEB-INF/jsp/null_list.jsp").forward(req, resp);
         } else
             req.setAttribute("listFilm", list);

@@ -9,7 +9,6 @@ import java.util.List;
 public interface FilmServiceInterface {
     List<Films> findByDirectorId(Long id);
 
-    List<Films> findByDirectorIdAndFilmRealiseDate(Long id, Long date1, Long date2);
 
     List<Films> findByRealiseDates(Long date1, Long date2);
 
@@ -17,12 +16,13 @@ public interface FilmServiceInterface {
 
     List<Films> findByRealiseOneDate(Long date1);
 
+    List<Films> findByDirectorIdAndFilmRealiseDate(Long id, Long date1, Long date2);
+    //
+
     List<Films> isParametersIsNull(String id, String date);
 
     List<Films> isParametersIsNullWithTwoDates(String idStr, String d1, String d2);
 
-
-    //Logic
 
 
 

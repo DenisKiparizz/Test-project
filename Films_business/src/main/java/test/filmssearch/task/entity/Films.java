@@ -9,6 +9,7 @@ import java.time.LocalDate;
 @Setter
 @Getter
 @ToString
+@EqualsAndHashCode
 @NoArgsConstructor
 @AllArgsConstructor
 public class Films {
@@ -16,17 +17,22 @@ public class Films {
     private Director director;
     private Long director_id;
     private String name;
-    private Long releaseDate;
+    private Integer releaseDate;
     private String genre;
 
-    public Films(Long id, Director director, String name, Long releaseDate, String genre) {
+    public Films(Long id, Director director, String name, Integer releaseDate, String genre) {
         this.id = id;
         this.director = director;
         this.releaseDate = releaseDate;
         this.name = name;
         this.genre = genre;
     }
+
     public void setDirector_id(Long director_id) {
         this.director_id = director.getId();
+    }
+
+    public void setReleaseDate(LocalDate releaseDate) {
+        this.releaseDate = releaseDate.getYear();
     }
 }
